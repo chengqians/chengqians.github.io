@@ -94,14 +94,14 @@
 <meta property="og:url" content="http://yoursite.com/2017/04/07/Hexo-Github搭建个人博客/index.html">
 <meta property="og:site_name" content="程前的技术博客">
 <meta property="og:description" content="之前自己使用的是wordpress搭建的博客，看到网上大多数大牛都使用Hexo搭建自己的个人博客，而且使用效果看起来也很不错。为了装逼起见，自己也来搭建一个玩玩。之间也是踩过无数的坑，不过还好，历时两天，自己的博客也算搭建起来了。现在写下这些小经验，希望能帮助大家少踩些坑。 环境配置Hexo中文文档上有详细的介绍。不过为了大家快速配置，大家只需要根据以下链接直接下载就行。  Node.js 直接下">
-<meta property="og:image" content="http://yoursite.com/2017/04/07/imgs/20170407_01.jpeg">
-<meta property="og:image" content="http://yoursite.com/2017/04/07/imgs/20170407_02.png">
-<meta property="og:image" content="http://yoursite.com/2017/04/07/imgs/20170407_03.png">
-<meta property="og:updated_time" content="2017-04-07T15:55:38.000Z">
+<meta property="og:image" content="http://yoursite.com/2017/04/07/Hexo-Github搭建个人博客/20170407_01.jpeg">
+<meta property="og:image" content="http://yoursite.com/2017/04/07/Hexo-Github搭建个人博客/20170407_02.png">
+<meta property="og:image" content="http://yoursite.com/2017/04/07/Hexo-Github搭建个人博客/20170407_03.png">
+<meta property="og:updated_time" content="2017-04-07T16:07:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo+Github搭建个人博客(Mac)">
 <meta name="twitter:description" content="之前自己使用的是wordpress搭建的博客，看到网上大多数大牛都使用Hexo搭建自己的个人博客，而且使用效果看起来也很不错。为了装逼起见，自己也来搭建一个玩玩。之间也是踩过无数的坑，不过还好，历时两天，自己的博客也算搭建起来了。现在写下这些小经验，希望能帮助大家少踩些坑。 环境配置Hexo中文文档上有详细的介绍。不过为了大家快速配置，大家只需要根据以下链接直接下载就行。  Node.js 直接下">
-<meta name="twitter:image" content="http://yoursite.com/2017/04/07/imgs/20170407_01.jpeg">
+<meta name="twitter:image" content="http://yoursite.com/2017/04/07/Hexo-Github搭建个人博客/20170407_01.jpeg">
 
 
 
@@ -372,10 +372,10 @@
 <p>打开本地Hexo服务器用来测试：</p>
 <figure class="highlight mathematica"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo server        或者：hexo s</div></pre></td></tr></table></figure>
 <p>此时，用浏览器打开网址<a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a>，看到如下页面，则表示本地搭建成功。</p>
-<p><img src="../imgs/20170407_01.jpeg" alt="http://localhost:4000"></p>
+<p><img src="/2017/04/07/Hexo-Github搭建个人博客/20170407_01.jpeg" alt="http://localhost:4000"></p>
 <hr>
 <h2 id="关联Github"><a href="#关联Github" class="headerlink" title="关联Github"></a>关联Github</h2><h3 id="1-创建仓库"><a href="#1-创建仓库" class="headerlink" title="1.创建仓库"></a>1.创建仓库</h3><p>登录Github账号，新建仓库，名为<code>用户名.github.io</code><strong>【特别注意】这里的<code>用户名</code>一定要和我们的Github账号名一致，不然到时候上传到Github上，会发现打不开。</strong>例如：chengqians/chengqians.github.io，”/“后面的chengqians写成chengqian就不行。建好后如下：</p>
-<p><img src="../imgs/20170407_02.png" alt="http://localhost:4000"></p>
+<p><img src="/2017/04/07/Hexo-Github搭建个人博客/20170407_02.png" alt="http://localhost:4000"></p>
 <h3 id="2-部署本地远程存储仓库"><a href="#2-部署本地远程存储仓库" class="headerlink" title="2.部署本地远程存储仓库"></a>2.部署本地远程存储仓库</h3><p>打开我的博客文件夹，目录结构如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">|-- _config.yml</div><div class="line">|-- db.json</div><div class="line">|-- node_modules</div><div class="line">|-- package.json</div><div class="line">|-- scaffolds</div><div class="line">|-- source</div><div class="line">|-- themes</div></pre></td></tr></table></figure>
 <p>打开<code>_config.yml</code> (可以用文本编辑打开)，滑到最下面找到deploy，改为下面的样子，repository的值为上图中右下角的链接<strong>【特别注意】: 后必须有个空格。</strong></p>
@@ -399,7 +399,7 @@
 <figure class="highlight mathematica"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">theme: next</div></pre></td></tr></table></figure>
 <h3 id="3-主题设定"><a href="#3-主题设定" class="headerlink" title="3.主题设定"></a>3.主题设定</h3><p>由于篇幅较大，具体请查看<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">NexT使用文档</a></p>
 <p>这里主要说明一下添加评论。很多博客使用的第三方社会化评论都是多说，可是今天打开多说官网，却看到多说即将关闭的通知。</p>
-<p><img src="../imgs/20170407_03.png" alt="http://localhost:4000"></p>
+<p><img src="/2017/04/07/Hexo-Github搭建个人博客/20170407_03.png" alt="http://localhost:4000"></p>
 <p>所以，在查看了几个第三方评论插件后，决定使用<a href="https://gentie.163.com/info.html" target="_blank" rel="external">网易云跟帖</a></p>
 <p>网易云跟帖注册成功后，会获取到一个<strong>Product Key</strong> <strong><em>【特别注意】网易云跟帖注册时站点网址一定要填写自己需要嵌入评论的网址</em></strong></p>
 <p>这里还是以NexT主题的配置为例</p>
