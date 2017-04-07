@@ -347,67 +347,16 @@
       
         
           
-            <p>之前自己使用的是wordpress搭建的博客，看到网上大多数大牛都使用Hexo搭建自己的个人博客，而且使用效果看起来也很不错。为了装逼起见，自己也来搭建一个玩玩。之间也是踩过无数的坑，不过还好，历时两天，自己的博客也算搭建起来了。现在写下这些小经验，希望能帮助大家少踩些坑。</p>
-<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">Hexo中文文档</a>上有详细的介绍。不过为了大家快速配置，大家只需要根据以下链接直接下载就行。</p>
-<ul>
-<li><a href="http://nodejs.org/" target="_blank" rel="external">Node.js</a> 直接下载安装即可</li>
-<li><a href="http://git-scm.com/" target="_blank" rel="external">Git</a> (如果已经安装了Xcode，此步可省略)</li>
-</ul>
-<h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><p>当Node.js和Git都安装好，就可以安装Hexo了。在终端执行下列命令：</p>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo npm install -g hexo</div></pre></td></tr></table></figure>
-<p>输入管理员密码</p>
-<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>创建一个我们的博客文件夹。终端cd进来，然后执行下面命令：</p>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo init</div></pre></td></tr></table></figure>
-<p>安装npm：</p>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install</div></pre></td></tr></table></figure>
-<p>打开本地Hexo服务器用来测试：</p>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo server        或者：hexo s</div></pre></td></tr></table></figure>
-<p>此时，用浏览器打开网址<a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a>，看到如下页面，则表示本地搭建成功。</p>
-<p><img src="/2017/04/07/Hexo-Github搭建个人博客/20170407_01.jpeg" alt="http://localhost:4000"></p>
-<hr>
-<h2 id="关联Github"><a href="#关联Github" class="headerlink" title="关联Github"></a>关联Github</h2><h3 id="1-创建仓库"><a href="#1-创建仓库" class="headerlink" title="1.创建仓库"></a>1.创建仓库</h3><p>登录Github账号，新建仓库，名为<code>用户名.github.io</code><strong>【特别注意】这里的<code>用户名</code>一定要和我们的Github账号名一致，不然到时候上传到Github上，会发现打不开。</strong>例如：chengqians/chengqians.github.io，”/“后面的chengqians写成chengqian就不行。建好后如下：</p>
-<p><img src="/2017/04/07/Hexo-Github搭建个人博客/20170407_02.png" alt="http://localhost:4000"></p>
-<h3 id="2-部署本地远程存储仓库"><a href="#2-部署本地远程存储仓库" class="headerlink" title="2.部署本地远程存储仓库"></a>2.部署本地远程存储仓库</h3><p>打开我的博客文件夹，目录结构如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">|-- _config.yml</div><div class="line">|-- db.json</div><div class="line">|-- node_modules</div><div class="line">|-- package.json</div><div class="line">|-- scaffolds</div><div class="line">|-- source</div><div class="line">|-- themes</div></pre></td></tr></table></figure>
-<p>打开<code>_config.yml</code> (可以用文本编辑打开)，滑到最下面找到deploy，改为下面的样子，repository的值为上图中右下角的链接<strong>【特别注意】: 后必须有个空格。</strong></p>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">    type: git</div><div class="line">    repository: https://github.com/chengqians/chengqians.github.io.git</div><div class="line">    branch: master</div></pre></td></tr></table></figure>
-<h3 id="3-生成静态页面命令"><a href="#3-生成静态页面命令" class="headerlink" title="3.生成静态页面命令"></a>3.生成静态页面命令</h3><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo generate        或者：hexo g</div></pre></td></tr></table></figure>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">此时若出现如下报错：</div><div class="line">ERROR Local hexo not found in ~/blog</div><div class="line">ERROR Try runing: <span class="string">'npm install hexo --save'</span></div><div class="line">则执行命令：</div><div class="line">npm install hexo --save</div><div class="line">若无报错，自行忽略此步骤。</div></pre></td></tr></table></figure>
-<h3 id="4-上传到远程仓库"><a href="#4-上传到远程仓库" class="headerlink" title="4.上传到远程仓库"></a>4.上传到远程仓库</h3><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo deploy            或者：hexo d</div></pre></td></tr></table></figure>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">此时如果出现报错:无法连接git或找不到git</div><div class="line">则执行命令：</div><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
-<p>再次执行<code>hexo g</code>和<code>hexo d</code>命令</p>
-<p>如果执行成功，终端会提示<strong>输入Github的用户名和密码</strong>。注意：这里Github的用户名最好不要使用邮箱。</p>
-<p>命令执行成功后，在浏览器中打开<a href="http://chengqians.github.io" target="_blank" rel="external">http://chengqians.github.io</a> (将<code>chengqians</code>改为你自己的用户名)。会显示和打开<code>http://localhost:4000</code>一样的页面。</p>
-<h2 id="发布文章"><a href="#发布文章" class="headerlink" title="发布文章"></a>发布文章</h2><p>终端cd到博客文件夹，执行下列命令新建文章：</p>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new <span class="string">"articleName"</span>	// 引号里面的名字就是我们的文章名字</div></pre></td></tr></table></figure>
-<p>名为<code>articleName.md</code>的文件夹会建在目录<code>/source/_posts</code>下。</p>
-<p>执行下列命令：</p>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// 清除缓存文件 (db.json) 和已生成的静态文件 (public)</div><div class="line">hexo clean</div><div class="line">// 生成缓存和静态文件</div><div class="line">hexo g</div><div class="line">// 重新部署到服务器</div><div class="line">hexo d</div></pre></td></tr></table></figure>
-<h2 id="更改Hexo主题"><a href="#更改Hexo主题" class="headerlink" title="更改Hexo主题"></a>更改Hexo主题</h2><p>可以到<a href="https://hexo.io/themes/" target="_blank" rel="external">Hexo官网主题页</a>找自己喜欢的主题。这里以NexT主题为例：</p>
-<h3 id="1-下载NexT主题"><a href="#1-下载NexT主题" class="headerlink" title="1.下载NexT主题"></a>1.下载NexT主题</h3><p>终端cd到博客文件夹，执行下面命令克隆最新版本NexT主题：</p>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/iissnan/hexo-theme-next themes/next</div></pre></td></tr></table></figure>
-<h3 id="2-启用主题"><a href="#2-启用主题" class="headerlink" title="2.启用主题"></a>2.启用主题</h3><p>打开博客文件夹下的<code>_config.yml</code>，找到<code>theme</code>，修改为：</p>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">theme: next</div></pre></td></tr></table></figure>
-<h3 id="3-主题设定"><a href="#3-主题设定" class="headerlink" title="3.主题设定"></a>3.主题设定</h3><p>由于篇幅较大，具体请查看<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">NexT使用文档</a></p>
-<p>这里主要说明一下添加评论。很多博客使用的第三方社会化评论都是多说，可是今天打开多说官网，却看到多说即将关闭的通知。</p>
-<p><img src="/2017/04/07/Hexo-Github搭建个人博客/20170407_03.png" alt="http://localhost:4000"></p>
-<p>所以，在查看了几个第三方评论插件后，决定使用<a href="https://gentie.163.com/info.html" target="_blank" rel="external">网易云跟帖</a></p>
-<p>网易云跟帖注册成功后，会获取到一个<strong>Product Key</strong> <strong><em>【特别注意】网易云跟帖注册时站点网址一定要填写自己需要嵌入评论的网址</em></strong></p>
-<p>这里还是以NexT主题的配置为例</p>
-<h4 id="1-配置"><a href="#1-配置" class="headerlink" title="1.配置"></a>1.配置</h4><p>找到博客文件夹下的<code>themes</code> -&gt; <code>next</code> -&gt; <code>_config.yml</code>，编辑<code>gentie_productKey</code>字段</p>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gentie_productKey: #your-gentie-product-key</div></pre></td></tr></table></figure>
-<h4 id="2-优化-可选"><a href="#2-优化-可选" class="headerlink" title="2.优化(可选)"></a>2.优化(可选)</h4><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div></pre></td><td class="code"><pre><div class="line">// Custom styles.</div><div class="line">//网易云跟帖评论样式增添 </div><div class="line">.post-comments-count a::before &#123;</div><div class="line">  content: "评论"; </div><div class="line">&#125; </div><div class="line">#yun-tie-sdk-wrap .input-box .tie-submit-row .tie-submit-btn &#123;</div><div class="line">  background-color: #649ab6; </div><div class="line">&#125; </div><div class="line"></div><div class="line">#yun-tie-sdk-wrap .input-box .tie-submit-row .tie-submit-btn:hover &#123;</div><div class="line">  background-color: #4c618f;</div><div class="line">&#125; </div><div class="line">.tie-empty-tip &#123;</div><div class="line">  display: none; </div><div class="line">&#125; </div><div class="line">//即将发布消息人样式 </div><div class="line">#yun-tie-sdk-wrap .input-box .tie-submit-row .user-info img:hover &#123;</div><div class="line">  box-shadow: 0 0 10px #fff; </div><div class="line">  rgba(255, 255, 255, .6) inset 0 0 20px rgba(255, 255, 255, 1); </div><div class="line">  -webkit-box-shadow: 0 0 10px #fff; </div><div class="line">  rgba(255, 255, 255, .6) inset 0 0 20px rgba(255, 255, 255, 1); </div><div class="line">  transform: rotateZ(360deg); </div><div class="line">  -webkit-transform: rotateZ(360deg); </div><div class="line">  -moz-transform: rotateZ(360deg); </div><div class="line">&#125; </div><div class="line">#yun-tie-sdk-wrap .input-box .tie-submit-row .user-info img &#123; </div><div class="line">  width: 32px; </div><div class="line">  height: 32px; </div><div class="line">  border-radius: 50%; </div><div class="line">  margin: 4px 10px 4px 8px; </div><div class="line">  padding: 0; </div><div class="line">  cursor: pointer; </div><div class="line">  box-shadow: inset 0 -1px 0 #3333sf; /*设置图像阴影效果*/ </div><div class="line">  -webkit-box-shadow: inset 0 -1px 0 #3333sf; </div><div class="line">  -webkit-transition: 0.4s; </div><div class="line">  -webkit-transition: -webkit-transform 0.4s ease-out;</div><div class="line">  transition: transform 0.4s ease-out; /*变化时间设置为0.4秒(变化动作即为下面的图像旋转360读）*/ </div><div class="line">  -moz-transition: -moz-transform 0.4s ease-out; </div><div class="line">&#125; </div><div class="line">//评论框内其他人样式 </div><div class="line">#yun-tie-sdk-wrap .single-tie .photo img:hover &#123; </div><div class="line">  box-shadow: 0 0 10px #fff; </div><div class="line">  rgba(255, 255, 255, .6) inset 0 0 20px rgba(255, 255, 255, 1);</div><div class="line">  -webkit-box-shadow: 0 0 10px #fff; </div><div class="line">  rgba(255, 255, 255, .6) inset 0 0 20px rgba(255, 255, 255, 1); </div><div class="line">  transform: rotateZ(360deg); </div><div class="line">  -webkit-transform: rotateZ(360deg); </div><div class="line">  -moz-transform: rotateZ(360deg); </div><div class="line">&#125; </div><div class="line">#yun-tie-sdk-wrap .single-tie .photo img &#123; </div><div class="line">  width: 42px; </div><div class="line">  height: 42px; </div><div class="line">  border-radius: 50%; </div><div class="line">  padding: 0; </div><div class="line">  cursor: pointer; </div><div class="line">  box-shadow: inset 0 -1px 0 #3333sf; /*设置图像阴影效果*/ </div><div class="line">  -webkit-box-shadow: inset 0 -1px 0 #3333sf; </div><div class="line">  -webkit-transition: 0.4s; </div><div class="line">  -webkit-transition: -webkit-transform 0.4s ease-out; </div><div class="line">  transition: transform 0.4s ease-out; /*变化时间设置为0.4秒(变化动作即为下面的图像旋转360读）*/ </div><div class="line">  -moz-transition: -moz-transform 0.4s ease-out; </div><div class="line">&#125; </div><div class="line"></div><div class="line">.name-nick:hover &#123; border-left: 14px solid #3264b4; &#125; </div><div class="line">.name-desp:hover &#123; border-left: 14px solid #3264b4; &#125; </div><div class="line"></div><div class="line">#yun-tie-sdk-wrap .single-tie .tie-author .name-nick&#123; </div><div class="line">  cursor: pointer; </div><div class="line">  transition: border-width 0.3s linear 0.1s, color 0.2s linear 0.3s; </div><div class="line">&#125; </div><div class="line">#yun-tie-sdk-wrap .single-tie .tie-author .name-desp &#123; </div><div class="line">  cursor: pointer; </div><div class="line">  transition: border-width 0.3s linear 0.1s, color 0.2s linear 0.3s; </div><div class="line">&#125; </div><div class="line">.tie-time:hover &#123; </div><div class="line">  border-right: 14px solid #3264b4;</div><div class="line">&#125; </div><div class="line">#yun-tie-sdk-wrap .single-tie .tie-time &#123; </div><div class="line">  transition: border-width 0.3s linear 0.1s, color 0.2s linear 0.3s; </div><div class="line">  cursor: pointer; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="绑定个人域名"><a href="#绑定个人域名" class="headerlink" title="绑定个人域名"></a>绑定个人域名</h2><h3 id="1-Github端"><a href="#1-Github端" class="headerlink" title="1.Github端"></a>1.Github端</h3><p>打开博客文件夹下的<code>themes</code> -&gt; <code>next</code> -&gt; <code>source</code>文件夹，新建文件：<strong><code>CNAME</code></strong>，【注意】没有后缀名！将自己的个人域名例：<code>chengqian.tech</code>直接写入。在终端依次执行下列命令：</p>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo clean</div><div class="line">hexo g</div><div class="line">hexo d</div></pre></td></tr></table></figure>
-<h3 id="2-域名解析"><a href="#2-域名解析" class="headerlink" title="2.域名解析"></a>2.域名解析</h3><p>记录类型：CNAME</p>
-<p>主机记录：填写@或者不填写</p>
-<p>记录值：<code>用户名.github.io.</code><strong>【特别注意】不要忘记最后的.</strong></p>
-<hr>
-<p>至此，一个基本的Hexo+Github的个人博客就算搭建完成。欢迎大家访问我的个人博客<strong><a href="http://chengqian.tech" target="_blank" rel="external">程前的技术博客</a></strong></p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="http://www.jianshu.com/p/13e64c9e2295#" target="_blank" rel="external">Mac上搭建基于GitHub的Hexo博客    ——与佳期</a></p>
-<p><a href="http://www.imooc.com/article/17224?block_id=tuijian_wz" target="_blank" rel="external">多说评论关闭服务后迁移到网易云跟帖    ——cdu杨子皓</a></p>
-
-          
+          之前自己使用的是wordpress搭建的博客，看到网上大多数大牛都使用Hexo搭建自己的个人博客，而且使用效果看起来也很不错。为了装逼起见，自己也来搭建一个玩玩。之间也是踩过无数的坑，不过还好，历时两天，自己的博客也算搭建起来了。现在写下这些小经验，希望能帮助大家少踩些坑。
+环境配置Hexo中文文档
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/07/Hexo-Github搭建个人博客/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -526,9 +475,16 @@
       
         
           
-            <h1 id="第一次使用Hexo编写文档"><a href="#第一次使用Hexo编写文档" class="headerlink" title="第一次使用Hexo编写文档"></a>第一次使用Hexo编写文档</h1><p>尝试第一次使用hexo还有Markdown编写自己的个人博客。</p>
+          第一次使用Hexo编写文档尝试第一次使用hexo还有Markdown编写自己的个人博客。
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/06/第一次使用hexo/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -647,17 +603,15 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/06/hello-world/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
