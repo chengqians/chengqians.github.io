@@ -1,0 +1,787 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="PHP," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="&amp;lt;?=$i?&amp;gt; 直接打印 $i 的值 1234// 相当于&amp;lt;?php  echo $i;?&amp;gt;  注释 123/* 这里是注释内容 */// 这里是注释内容# 这里是注释内容 (UNIX风格注释)  var_dump($a); // 显示变量的信息(可以显示数据类型)  数据类型(php是弱数据类型)  类型和变量的关系 类型是抽象的，变量是具体的，一个变量总是属于某个类型">
+<meta name="keywords" content="PHP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP学习之PHP基础">
+<meta property="og:url" content="http://yoursite.com/2017/06/17/PHP学习之PHP基础/index.html">
+<meta property="og:site_name" content="程前的技术博客">
+<meta property="og:description" content="&amp;lt;?=$i?&amp;gt; 直接打印 $i 的值 1234// 相当于&amp;lt;?php  echo $i;?&amp;gt;  注释 123/* 这里是注释内容 */// 这里是注释内容# 这里是注释内容 (UNIX风格注释)  var_dump($a); // 显示变量的信息(可以显示数据类型)  数据类型(php是弱数据类型)  类型和变量的关系 类型是抽象的，变量是具体的，一个变量总是属于某个类型">
+<meta property="og:updated_time" content="2017-06-17T14:03:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP学习之PHP基础">
+<meta name="twitter:description" content="&amp;lt;?=$i?&amp;gt; 直接打印 $i 的值 1234// 相当于&amp;lt;?php  echo $i;?&amp;gt;  注释 123/* 这里是注释内容 */// 这里是注释内容# 这里是注释内容 (UNIX风格注释)  var_dump($a); // 显示变量的信息(可以显示数据类型)  数据类型(php是弱数据类型)  类型和变量的关系 类型是抽象的，变量是具体的，一个变量总是属于某个类型">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/17/PHP学习之PHP基础/"/>
+
+
+
+
+
+  <title> PHP学习之PHP基础 | 程前的技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">程前的技术博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/17/PHP学习之PHP基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bug Terminator.">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="程前的技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                PHP学习之PHP基础
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-17T22:02:21+08:00">
+                2017-06-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/06/17/PHP学习之PHP基础/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ol>
+<li><p><code>&lt;?=$i?&gt;</code></p>
+<p>直接打印 <code>$i</code> 的值</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 相当于</span></div><div class="line"><span class="meta">&lt;?php</span></div><div class="line">  <span class="keyword">echo</span> $i;</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>注释</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 这里是注释内容 */</span></div><div class="line"><span class="comment">// 这里是注释内容</span></div><div class="line"><span class="comment"># 这里是注释内容 (UNIX风格注释)</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><code>var_dump($a);</code> // 显示变量的信息(可以显示数据类型)</p>
+</li>
+<li><p>数据类型(php是弱数据类型)</p>
+<blockquote>
+<p><strong>类型和变量的关系</strong></p>
+<p>类型是抽象的，变量是具体的，一个变量总是属于某个类型</p>
+</blockquote>
+<ul>
+<li><p>基本数据类型</p>
+<p>整型 int</p>
+<p>浮点型 float/double (php中float和double不区分)</p>
+<p>布尔型 bool</p>
+<p>字符型 string</p>
+</li>
+<li><p>复合数据类型</p>
+<p>数组 array</p>
+<p>对象 object</p>
+</li>
+<li><p>特殊数据类型</p>
+<p>空值 NULL</p>
+<p>资源 resource</p>
+</li>
+</ul>
+</li>
+<li><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$a;</div><div class="line"><span class="keyword">echo</span> $a;	<span class="comment">// 这里会报个notice，但是程序会继续执行</span></div><div class="line">var_dump($a);	<span class="comment">// NULL (没有分配内存空间)</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>php不支持无符号整数，即php的整数都是有符号的</p>
+</li>
+<li><p>一个整数(Int型)，一般占用4个字节(和平台有关)，一个字节占8bit</p>
+</li>
+<li><p><code>PHP_INT_SIZE</code>显示当前机器Int数据所占字节数</p>
+<p><code>PHP_INT_MAX</code>的值为(假设当前平台的整型占4个字节)1*2<sup>31</sup>-1(类似OC中的<code>MAXFLOAT</code>)</p>
+<p>当给Int型数据的值超出<code>PHP_INT_MAX</code>的范围时，将会被解为<code>float</code>类型</p>
+</li>
+<li><p>布尔值false (false不区分大小写，falsE也表示false)</p>
+<p>false、0、0.0、”0”、””、不包括的任何元素的数组、不包括任何成员的对象、NULL都可以表示false</p>
+</li>
+<li><p>浮点数的精度是14 (从左边开始，第一个非0数开始计算精度)</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">eg：</div><div class="line">$a = <span class="number">567.9999</span>;	<span class="comment">// 567.9999</span></div><div class="line">$b = <span class="number">789.8812345678543</span>;	<span class="comment">// 789.88123456785</span></div><div class="line">$c = <span class="number">0.00000007777777777</span>;	<span class="comment">// 0.00000007777777777</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>字符串 </p>
+<p>一个字符占用一个字节。例：<code>$a = &quot;hello&quot;;</code> 占用5个字节</p>
+<p>当一个变量包含在<code>&quot;&quot;</code>中时，会输出变量的值，而包含在<code>&#39;&#39;</code>之中时，会输出其字符本身。例：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$i = <span class="string">"hello"</span>;</div><div class="line"><span class="keyword">echo</span> <span class="string">"$i"</span>;	<span class="comment">// hello</span></div><div class="line"><span class="keyword">echo</span> <span class="string">'$i'</span>;	<span class="comment">// $i</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>算数运算符</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$a = <span class="number">7</span>/<span class="number">3</span>;</div><div class="line"><span class="keyword">echo</span> $a;	<span class="comment">// 2.3333333333333 (精度为14)</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>比较运算符</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$a == $b;	<span class="comment">// $a等于$b</span></div><div class="line">$a === $b;	<span class="comment">// $a等于$b，并且它们的类型也相同(即完全相等)</span></div><div class="line">$a != $b;	<span class="comment">// $a不等于$b(即只有值不相等才为真)</span></div><div class="line">$a !== $b;	<span class="comment">// $a不等于$b，或者它们的类型不同</span></div><div class="line"></div><div class="line"><span class="comment">// 例：</span></div><div class="line">$a = <span class="number">2</span>; $b = <span class="number">2.0</span>;	<span class="comment">// $a == $b 真；$a === $b 假</span></div><div class="line">$a = <span class="number">3</span>; $b = <span class="number">2.0</span>;	<span class="comment">// $a != $b 真</span></div><div class="line">$a = <span class="number">2</span>; $b = <span class="number">2.0</span>;	<span class="comment">// $a != $b 假；$a !== $b 真</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>逻辑运算符</p>
+<p><code>&amp;&amp;</code> / <code>and</code>    并且</p>
+<p><code>||</code> / <code>or</code>    或者</p>
+<p><code>!</code>            非</p>
+<p><code>xor</code>        逻辑异或</p>
+<blockquote>
+<p><strong>注意</strong> <em><code>&amp;&amp;</code>和<code>and</code>虽然都表示并且，但是它们的优先级是不一样的。<code>&amp;&amp;</code>的优先级高于<code>=</code>；而<code>=</code>的优先级高于<code>and</code>。<code>||</code>和<code>or</code>同样</em>例：</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$a = <span class="keyword">false</span> || <span class="keyword">true</span>;	<span class="comment">// true</span></div><div class="line">$b = <span class="keyword">false</span> <span class="keyword">or</span> <span class="keyword">true</span>;	<span class="comment">// false</span></div><div class="line"></div><div class="line">$x <span class="keyword">xor</span> $y <span class="comment">// 表示$a只要和$b不相同，且只要有一个为真，结果就为真</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>字符串运算符(<code>.</code>)</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$a = <span class="string">"hello, world"</span>;</div><div class="line">$b = <span class="string">" okok"</span>;</div><div class="line">$c = $a.$b;	<span class="comment">// hello, world okok</span></div><div class="line"><span class="comment">// 如果$a和$b不是字符串，通过 . 连接时，会先转为字符串然后拼接起来</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>类型运算符(<code>instanceof</code>)</p>
+<blockquote>
+<p><code>instanceof</code> 用于确定一个php变量是否属于某一类class (类似OC中的 isKindOfClass)。返回的是一个bool值</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">MyClass</span></span>&#123;&#125;;</div><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">NotMyClass</span></span>&#123;&#125;;</div><div class="line">  $a = <span class="keyword">new</span> MyClass;</div><div class="line">  var_dump($a <span class="keyword">instanceof</span> MyClass);		<span class="comment">// bool(true)</span></div><div class="line">  var_dump($a <span class="keyword">instanceof</span> NotMyClass);	<span class="comment">// bool(false)</span></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>优先级 (这里只说<code>前++</code> 和 <code>后++</code> 的优先级)</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$a = <span class="number">3</span>;</div><div class="line">$b = ++$a*<span class="number">3</span>;	<span class="comment">// 12</span></div><div class="line">$c = $a++*<span class="number">3</span>;	<span class="comment">// 9</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>在php中，用于判断的 <code>else if</code> 可以连起来 <code>elseif</code> 使用</p>
+</li>
+<li><p>php中 <code>switch</code> 的用法总结</p>
+<p>可以使用的数据类型有 整数、小数、字符串、bool、NULL</p>
+<blockquote>
+<p> <strong><code>switch</code> 内部执行原理</strong> 首先按照 <code>case</code> 顺序进行逐一匹配，如果一个都没有匹配到，则执行<code>default</code>语句，直到遇到<code>break</code>，才推出<code>switch</code>，否则，从<code>default</code> 继续向下顺序执行</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 例：</span></div><div class="line">$i = <span class="number">11</span>;</div><div class="line"><span class="keyword">switch</span> ($i) &#123;</div><div class="line">  <span class="keyword">case</span> <span class="number">10</span>:</div><div class="line">  <span class="keyword">echo</span> <span class="string">"10"</span>;</div><div class="line">    </div><div class="line">  <span class="keyword">default</span> :</div><div class="line">  <span class="keyword">echo</span> <span class="string">"default"</span>;</div><div class="line">    </div><div class="line">  <span class="keyword">case</span> <span class="number">9</span>:</div><div class="line">  <span class="keyword">echo</span> <span class="string">"9"</span>;</div><div class="line">  <span class="keyword">break</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">// default9</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><code>if</code> 和 <code>switch</code> 的区别</p>
+<p><code>if</code> 经常是对某个范围(区间)的判断 (当然 <code>if</code> 也可判断某个点)</p>
+<p><code>switch</code> 常常是对某个点(季节、上下等)的判断 (<code>switch</code>当然也可以判断范围)</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PHP/" rel="tag"># PHP</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/17/PHP学习之apache配置和php环境搭建/" rel="prev" title="PHP学习之apache配置和php环境搭建">
+                PHP学习之apache配置和php环境搭建 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Bug Terminator." />
+          <p class="site-author-name" itemprop="name">Bug Terminator.</p>
+           
+              <p class="site-description motion-element" itemprop="description">爱编程，不爱bug。 爱生活，不爱黑眼圈。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chengqians" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/08a729c5d75b" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://tutuge.me" title="土土哥的技术Blog" target="_blank">土土哥的技术Blog</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bug Terminator.</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "1fe7f78bf9824c10b7358ec23bb6f6cc",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
