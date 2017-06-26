@@ -1,0 +1,739 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="PHP," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="排序分为内部排序和外部排序 内部排序：所有数据都加载到内存当中。主要方法有冒泡法、选择排序法、插入式排序法和快速排序法。 外部排序：数据量过大，无法全部加载到内存中，需要借助外部存储进行排序，将数据量分成多个文件，每个文件分别用内部排序法进行排序，排序后将文件合并。主要方法有合并排序法和直接合并排序法。   冒泡排序（升序排列）  思想：从第一个元素开始，对数组中两两相邻的元素比较，将值较小的元">
+<meta name="keywords" content="PHP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP学习之内部排序">
+<meta property="og:url" content="http://yoursite.com/2017/06/26/PHP学习之内部排序/index.html">
+<meta property="og:site_name" content="程前的技术博客">
+<meta property="og:description" content="排序分为内部排序和外部排序 内部排序：所有数据都加载到内存当中。主要方法有冒泡法、选择排序法、插入式排序法和快速排序法。 外部排序：数据量过大，无法全部加载到内存中，需要借助外部存储进行排序，将数据量分成多个文件，每个文件分别用内部排序法进行排序，排序后将文件合并。主要方法有合并排序法和直接合并排序法。   冒泡排序（升序排列）  思想：从第一个元素开始，对数组中两两相邻的元素比较，将值较小的元">
+<meta property="og:image" content="http://yoursite.com/2017/06/26/PHP学习之内部排序/20170626_01.png">
+<meta property="og:image" content="http://yoursite.com/2017/06/26/PHP学习之内部排序/20170626_02.png">
+<meta property="og:image" content="http://yoursite.com/2017/06/26/PHP学习之内部排序/20170626_03.png">
+<meta property="og:updated_time" content="2017-06-26T13:51:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP学习之内部排序">
+<meta name="twitter:description" content="排序分为内部排序和外部排序 内部排序：所有数据都加载到内存当中。主要方法有冒泡法、选择排序法、插入式排序法和快速排序法。 外部排序：数据量过大，无法全部加载到内存中，需要借助外部存储进行排序，将数据量分成多个文件，每个文件分别用内部排序法进行排序，排序后将文件合并。主要方法有合并排序法和直接合并排序法。   冒泡排序（升序排列）  思想：从第一个元素开始，对数组中两两相邻的元素比较，将值较小的元">
+<meta name="twitter:image" content="http://yoursite.com/2017/06/26/PHP学习之内部排序/20170626_01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/26/PHP学习之内部排序/"/>
+
+
+
+
+
+  <title> PHP学习之内部排序 | 程前的技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">程前的技术博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/26/PHP学习之内部排序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bug Terminator.">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="程前的技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                PHP学习之内部排序
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-26T21:46:42+08:00">
+                2017-06-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/06/26/PHP学习之内部排序/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>排序分为<strong>内部排序</strong>和<strong>外部排序</strong></p>
+<p>内部排序：所有数据都加载到内存当中。主要方法有<strong>冒泡法</strong>、<strong>选择排序法</strong>、<strong>插入式排序法</strong>和<strong>快速排序法</strong>。</p>
+<p>外部排序：数据量过大，无法全部加载到内存中，需要借助外部存储进行排序，将数据量分成多个文件，每个文件分别用内部排序法进行排序，排序后将文件合并。主要方法有<strong>合并排序法</strong>和<strong>直接合并排序法</strong>。</p>
+</blockquote>
+<ol>
+<li><p>冒泡排序（升序排列）</p>
+<blockquote>
+<p><strong>思想：</strong>从第一个元素开始，对数组中两两相邻的元素比较，将值较小的元素放在前面，值较大的元素放在后面，一轮比较完毕，一个最大的数将成为数组中的最后一个元素。</p>
+</blockquote>
+<p><img src="/2017/06/26/PHP学习之内部排序/20170626_01.png" alt="冒泡排序示意图"></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$arr = <span class="keyword">array</span>(<span class="number">1</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">4</span>);</div><div class="line">$temp = <span class="number">0</span>;</div><div class="line"><span class="keyword">for</span> ($i = <span class="number">0</span>; $i &lt; count($arr)<span class="number">-1</span>; $i++) &#123;	<span class="comment">// 趟数</span></div><div class="line">    <span class="keyword">for</span> ($j = <span class="number">0</span>; $j &lt; count($arr)<span class="number">-1</span>-$i; $j++) &#123;	<span class="comment">// 比较次数</span></div><div class="line">        <span class="keyword">if</span> ($arr[$j] &gt; $arr[$j+<span class="number">1</span>]) &#123;</div><div class="line">            $temp = $arr[$j];</div><div class="line">            $arr[$j] = $arr[$j+<span class="number">1</span>];</div><div class="line">            $arr[$j+<span class="number">1</span>] = $temp;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">print_r($arr);</div><div class="line"><span class="comment">// Array ( [0] =&gt; 1 [1] =&gt; 2 [2] =&gt; 3 [3] =&gt; 4 [4] =&gt; 6 )</span></div></pre></td></tr></table></figure>
+<p>Q1：趟数为什么是小于 <code>$count($arr)-1</code> ，而不是小于 <code>count($arr)</code> ?</p>
+<p>A1：因为 <code>$i</code> 表示趟数，同时又表示排序好的个数， <code>$i</code> 每加1，都表示已经排好了未排列里面的最大数。当 <code>$i &lt; count($arr)</code> 时，最后一趟，只剩最后一个数，这个数根本不用比较。只剩一个坑，跳进里面就行了，用不着再一次比较。</p>
+<p>Q2：比较次数为什么是 <code>count($arr)-1-$i</code> ?</p>
+<p>A2：为什么是 <code>count($arr)-1</code> ，因为 <code>$j</code> 表示的是比较次数，自己和自己不需要比较，只需要和自己后面的数比较就行了，所以是 <code>count($arr)-1</code> ；那为什么还要减去 <code>$i</code> 呢？同样的道理， <code>$i</code> 同样表示已经排好了的个数，而且这些排好的都在最后面放着，也没有必要和排序好的再次比较。所以，最终结果就是 <code>count($arr)-1-$i</code> 。</p>
+<p>​</p>
+</li>
+<li><p>选择排序法（升序排列）</p>
+<blockquote>
+<p><strong>思想：</strong>每一次从待排序的数据元素中选出最小的一个元素，存放在需要排列序列的起始位置，直到全部待排序的数据元素排完。</p>
+</blockquote>
+<p><img src="/2017/06/26/PHP学习之内部排序/20170626_02.png" alt="选择排序示意图"></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">$arr = <span class="keyword">array</span>(<span class="number">1</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">4</span>);</div><div class="line">$temp = <span class="number">0</span>;</div><div class="line"><span class="keyword">for</span> ($i = <span class="number">0</span>; $i &lt; count($arr)<span class="number">-1</span>; $i++) &#123;</div><div class="line">    $minVal = $arr[$i];</div><div class="line">    $minIndex = $i;</div><div class="line">    <span class="keyword">for</span> ($j = $i+<span class="number">1</span>; $j &lt; count($arr); $j++) &#123;	<span class="comment">// 找出最小数</span></div><div class="line">        <span class="keyword">if</span> ($minVal &gt; $arr[$j]) &#123;</div><div class="line">            $minVal = $arr[$j];</div><div class="line">            $minIndex = $j;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 交换</span></div><div class="line">    $temp = $arr[$i];</div><div class="line">    $arr[$i] = $arr[$minIndex];</div><div class="line">    $arr[$minIndex] = $temp;</div><div class="line">&#125;</div><div class="line">print_r($arr);</div><div class="line"><span class="comment">// Array ( [0] =&gt; 1 [1] =&gt; 2 [2] =&gt; 3 [3] =&gt; 4 [4] =&gt; 6 )</span></div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>插入式排序法</p>
+<p>插入式排序法又分为<strong>插入排序法</strong>、<strong>谢尔排序法</strong> 和 <strong>二叉树排序法</strong>。这里我们只举例基本的插入排序法</p>
+<blockquote>
+<p><strong>思想：</strong>分一个有序表（可以理解为数组）和一个无序表，开始时有序表中只包含一个元素，无序表中包含n-1个元素，排序过程每次从无序表中取出第一个元素，和有序表中的元素进行比较，插入到适当位置。</p>
+<p>因为有序表和无序表刚好划分了一整个数组，所以在一个数组中就可以完成我们的排序。</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">$arr = <span class="keyword">array</span>(<span class="number">1</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">4</span>);</div><div class="line"><span class="keyword">for</span> ($i = <span class="number">0</span>; $i &lt; count($arr); $i++) &#123;</div><div class="line">    $insertVal = $arr[$i+<span class="number">1</span>];</div><div class="line">  </div><div class="line">    $sortIndex = $i<span class="number">-1</span>;	<span class="comment">// 从后往前比较</span></div><div class="line">    <span class="keyword">while</span> ($sortIndex &gt;= <span class="number">0</span> &amp;&amp; $insertVal &lt; $arr[$sortIndex]) &#123;	<span class="comment">// 判断位置是否合适；只要进入while循环，表示位置还不合适</span></div><div class="line">        $arr[$sortIndex+<span class="number">1</span>] = $arr[$sortIndex];	<span class="comment">// 给要插入的数向后挪位置</span></div><div class="line">        $sortIndex--;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">// 插入数据(在比较的数的后面插入)</span></div><div class="line">    $arr[$sortIndex+<span class="number">1</span>] = $insertVal; </div><div class="line">&#125;</div><div class="line">print_r($arr);</div><div class="line"><span class="comment">// Array ( [0] =&gt; 1 [1] =&gt; 2 [2] =&gt; 3 [3] =&gt; 4 [4] =&gt; 6 )</span></div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>快速排序法</p>
+<blockquote>
+<p><strong>思想：</strong>通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据比另外一部分的数据都小，然后再按照此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。</p>
+<p>快速排序的速度非常快，不过在排序的瞬间，内存会暴涨。快速排序是<strong>用空间来换取时间</strong>的一种思想</p>
+</blockquote>
+<p><img src="/2017/06/26/PHP学习之内部排序/20170626_03.png" alt="快速排序示意图"></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">$arr = <span class="keyword">array</span>(<span class="number">1</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">4</span>);</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span> <span class="params">($left, $right, &amp;$array)</span> </span>&#123;</div><div class="line">    $l = $left;</div><div class="line">    $r = $right;</div><div class="line">    $pivot = $array[($left+$right)/<span class="number">2</span>];	<span class="comment">// 基准(这里取数组中间数，可以取数组中随便一个数)</span></div><div class="line">    $temp = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span> ($l &lt; $r) &#123;</div><div class="line">        <span class="keyword">while</span> ($array[$l] &lt; $pivot) $l++;</div><div class="line">        <span class="keyword">while</span> ($array[$r] &gt; $pivot) $r--;</div><div class="line">      </div><div class="line">        <span class="keyword">if</span> ($l &gt;= $r) <span class="keyword">break</span>;</div><div class="line">      </div><div class="line">        $temp = $array[$l];</div><div class="line">        $array[$l] = $array[$r];</div><div class="line">        $array[$r] = $temp;</div><div class="line">      </div><div class="line">        <span class="keyword">if</span> ($array[$l] == $pivot) --$r;</div><div class="line">        <span class="keyword">if</span> ($array[$r] == $pivot) ++$l;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> ($l == $r) &#123;</div><div class="line">        $l++;</div><div class="line">        $r--;</div><div class="line">    &#125;</div><div class="line">  </div><div class="line">    <span class="keyword">if</span> ($left &lt; $r) quickSort($left, $r, $array);</div><div class="line">    <span class="keyword">if</span> ($right &gt; $l) quickSort($l, $right, $array);</div><div class="line">&#125;</div><div class="line">quickSort(<span class="number">0</span>, count($arr)<span class="number">-1</span>, $arr);</div><div class="line">print_r($arr);</div><div class="line"><span class="comment">// Array ( [0] =&gt; 1 [1] =&gt; 2 [2] =&gt; 3 [3] =&gt; 4 [4] =&gt; 6 )</span></div></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PHP/" rel="tag"># PHP</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/26/PHP学习之PHP基础（二）/" rel="prev" title="PHP学习之PHP基础（二）">
+                PHP学习之PHP基础（二） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Bug Terminator." />
+          <p class="site-author-name" itemprop="name">Bug Terminator.</p>
+           
+              <p class="site-description motion-element" itemprop="description">爱编程，不爱bug。 爱生活，不爱黑眼圈。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chengqians" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/08a729c5d75b" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://tutuge.me" title="土土哥的技术Blog" target="_blank">土土哥的技术Blog</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bug Terminator.</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "1fe7f78bf9824c10b7358ec23bb6f6cc",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
